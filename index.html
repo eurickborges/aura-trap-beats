@@ -77,6 +77,37 @@ footer{margin-top:80px;text-align:center;color:#555;font-size:0.9rem;}
 .whatsapp-float{position:fixed;width:60px;height:60px;bottom:25px;right:25px;background-color:#25d366;color:#fff;border-radius:50px;text-align:center;font-size:30px;box-shadow:0 0 15px #25d366;z-index:1000;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:0.3s;}
 .whatsapp-float:hover{transform:scale(1.1);}
 .explanation{background:#111;padding:25px;border-radius:15px;margin-bottom:40px;border:1px solid #ff0000;position:relative;z-index:1;line-height:1.6;}
+
+/* AJUSTE DOS PLAYERS NO MOBILE */
+.track-card audio {
+  width: 100%;
+  max-width: 100%;
+  height: 35px;
+  margin-top: 8px;
+}
+
+/* AJUSTE GERAL DO BOX NO CELULAR */
+@media (max-width: 600px) {
+  .player-box {
+    padding: 15px;
+  }
+
+  .track-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .track-card img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .track-info {
+    width: 100%;
+  }
+}
+
+
 </style>
 </head>
 <body>
