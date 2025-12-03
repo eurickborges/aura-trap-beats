@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '877152804970085');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=877152804970085&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+
+<meta charset="UTF-8">
+<title>Aura Trap</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="img/icon.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#000;color:#fff;overflow-x:hidden;position:relative;}
+canvas#bg-canvas, canvas#whoami-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;}
+.container{max-width:1100px;margin:auto;padding:40px 20px;position:relative;z-index:1;}
+header{margin-bottom:40px;position:relative; height:300px; border-radius:15px; overflow:hidden;}
+header img{width:100%; height:100%; object-fit:cover; display:block; opacity:1;}
+header .header-content{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1; text-align:center;}
+header h1{font-size:3rem;color:#ff0000;text-transform:uppercase;text-shadow:0 0 10px #ff0000,0 0 20px #ff0000;}
+header p{margin-top:15px;font-size:1.2rem;color:#fff;text-shadow:0 0 5px #ff0000;}
+.timer-box{margin-top:20px;background:#111;padding:15px 25px;border-radius:10px;display:inline-block;border:1px solid #ff0000;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0px #ff0000;}50%{box-shadow:0 0 15px #ff0000;}100%{box-shadow:0 0 0px #ff0000;}}
+.hero{display:flex;flex-wrap:wrap;gap:40px;align-items:center;margin-bottom:80px;}
+.hero-text{flex:1;}
+.hero-text h2{font-size:2.5rem;margin-bottom:20px;}
+.hero-text span{color:#ff0000;}
+.hero-text p{font-size:1.1rem;color:#ccc;margin-bottom:30px;text-shadow:0 0 5px #ff0000;}
+.btn{display:inline-block;padding:15px 35px;background:#ff0000;color:#fff;text-decoration:none;font-size:1.1rem;border-radius:8px;transition:0.3s;position:relative;z-index:1;text-shadow:0 0 5px #ff0000;}
+.btn:hover{background:#b00000;transform:scale(1.05);box-shadow:0 0 20px #ff0000;}
+.player-box{flex:1;background:#111;padding:30px;border-radius:15px;overflow:hidden;margin-top:40px;}
+.player-box h3{color:#ff0000;margin-bottom:20px;text-align:center;}
+.track-card{position:relative; overflow:hidden; border-radius:12px; border:1px solid #ff0000; margin-bottom:20px; cursor:pointer; transition:0.3s; display:flex; align-items:center; gap:15px; background:#000;}
+.track-card img{width:70px;height:70px;border-radius:8px;object-fit:cover;transition:0.3s;}
+.track-card:hover img{transform:scale(1.1);}
+.track-info{flex:1;position:relative;}
+.track-info p{margin-bottom:5px;font-weight:bold;}
+.audio-visualizer{display:flex;gap:2px;position:absolute;bottom:5px;left:0;width:100%;height:10px;}
+.audio-visualizer div{flex:1;background:#ff0000;height:4px;transform-origin:bottom;transition:0.2s;}
+.benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-bottom:80px;}
+.card{background:#111;padding:30px;border-radius:14px;border:1px solid #ff0000;transition:0.3s;position:relative;overflow:hidden;}
+.card:hover{transform:translateY(-5px);box-shadow:0 0 15px #ff0000;}
+.card h3{color:#ff0000;margin-bottom:10px;}
+.card p{color:#ccc;}
+.benefits .btn-center{display:block;margin:20px auto 0 auto;text-align:center;}
+.testimonials{margin-bottom:80px;}
+.testimonials h2{text-align:center;margin-bottom:40px;font-size:2.3rem;color:#ff0000;text-shadow:0 0 10px #ff0000;}
+.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.testimonial{background:#111;padding:30px;border-radius:20px;font-size:0.95rem;position:relative;transition:0.3s;cursor:pointer;overflow:hidden;border:2px solid #ff0000;box-shadow:0 0 15px #ff0000;}
+.testimonial:hover{transform:translateY(-5px);box-shadow:0 0 35px #ff0000,0 0 50px #ff6600;}
+.testimonial p{margin-bottom:10px;line-height:1.4;color:#ccc;font-size:1rem;}
+.testimonial span{display:block;color:#ff0000;font-weight:bold;font-size:0.95rem;text-align:right;}
+.whoami{position:relative;background:#111;padding:30px;border-radius:15px;margin-bottom:40px;border:1px solid #ff0000;display:flex;flex-wrap:wrap;gap:20px;align-items:center;overflow:hidden;}
+.whoami img{width:250px;height:250px;border-radius:50%;object-fit:cover;flex-shrink:0;z-index:1;position:relative;}
+.whoami-text{flex:1;color:#ccc;line-height:1.6;z-index:1;position:relative;}
+.cta{position:relative;padding:50px 20px;border-radius:20px;text-align:center;background: rgba(255,0,0,0.35);overflow:hidden;margin-top:40px;}
+.cta h2, .cta p, .cta a.btn{position:relative; z-index:1; margin-bottom:30px;}
+.cta-bg{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:100%; height:100%; background: url('Img/arte.png') center center/cover no-repeat; opacity:0.2; pointer-events:none; z-index:0;}
+footer{margin-top:80px;text-align:center;color:#555;font-size:0.9rem;}
+.whatsapp-float{position:fixed;width:60px;height:60px;bottom:25px;right:25px;background-color:#25d366;color:#fff;border-radius:50px;text-align:center;font-size:30px;box-shadow:0 0 15px #25d366;z-index:1000;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:0.3s;}
+.whatsapp-float:hover{transform:scale(1.1);}
+.explanation{background:#111;padding:25px;border-radius:15px;margin-bottom:40px;border:1px solid #ff0000;position:relative;z-index:1;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<a class="whatsapp-float" 
+   href="https://wa.me/5533984166709?text=Fala%20Rick!%20Vim%20atraves%20do%20site%20Aura%20Trap%20e%20tenho%20interesse%20nos%20beats.%20Meu%20nome%20artistico%20eh:" 
+   target="_blank"
+   onclick="trackWhatsApp()">
+  📱
+</a>
+
+<script>
+function trackWhatsApp() {
+  if (typeof fbq === 'function') {
+    fbq('track', 'Contact');
+  }
+}
+</script>
+
+<div class="container">
+<header>
+  <img src="img/banner.png" alt="Banner Aura Trap">
+  <div class="header-content">
+
+    <div class="timer-box">🔥 Oferta expira em: <span id="timer"></span></div>
+  </div>
+</header>
+
+<div class="explanation">
+  <p>Sei como é difícil para um artista independente ter acesso a beats de qualidade para lançar seus trabalhos. Pensando nisso, criei este projeto visando oferecer beats profissionais com preço acessível, permitindo que qualquer artista possa elevar sua música ao próximo nível.</p>
+</div>
+
+<section class="hero">
+  <div class="hero-text">
+    <h2>Prévia de alguns <span>beats</span><br>mas temos muito mais!</h2>
+    <p>Trap moderno, agressivo e melódico. Pronto pra gravação e lançamento.</p>
+    <a class="btn" href="https://wa.me/5533984166709?text=Fala%20Rick!%20Vim%20atraves%20do%20site%20Aura%20Trap%20e%20tenho%20interesse%20nos%20beats.%20Meu%20nome%20artistico%20eh:" target="_blank" 
+   onclick="fbq('track', 'Lead');">
+  Eu quero!
+</a>
+  </div>
+
+  <div class="player-box">
+    <h3>🎧 Prévia dos Beats</h3>
+    <div class="track-card">
+      <img src="img/capa1.png" alt="Beat 1">
+      <div class="track-info">
+        <p>Track Prévia 1</p>
+        <audio controls loop src="audio/beat1.mp3"></audio>
+      </div>
+    </div>
+    <div class="track-card">
+      <img src="img/capa2.png" alt="Beat 2">
+      <div class="track-info">
+        <p>Track Prévia 2</p>
+        <audio controls loop src="audio/beat2.mp3"></audio>
+      </div>
+    </div>
+    <div class="track-card">
+      <img src="img/capa3.png" alt="Beat 3">
+      <div class="track-info">
+        <p>Track Prévia 3</p>
+        <audio controls loop src="audio/beat3.mp3"></audio>
+      </div>
+    </div>
+    <div class="track-card">
+      <img src="img/capa4.png" alt="Beat 4">
+      <div class="track-info">
+        <p>Track Prévia 4</p>
+        <audio controls loop src="audio/beat4.mp3"></audio>
+      </div>
+    </div>
+    <div class="track-card">
+      <img src="img/capa5.png" alt="Beat 5">
+      <div class="track-info">
+        <p>Track Prévia 5</p>
+        <audio controls loop src="audio/beat5.mp3"></audio>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="card">
+    <h3>🎵 Licença Platinum</h3>
+    <p>Recebe o beat em WAV fechado, pode usar em lançamentos comerciais, streaming, shows e redes sociais. O mesmo beat pode ser vendido para outros artistas, garantindo preço acessível.</p>
+  </div>
+  <div class="card">
+    <h3>🎵 Licença Exclusive</h3>
+    <p>Beat exclusivo só pra você, inclui stems e total liberdade criativa. Não é vendido para ninguém mais, ideal para quem quer exclusividade completa.</p>
+  </div>
+  <div class="card">
+    <h3>📩 Encomendas</h3>
+    <p>Temos beats prontos à venda e também podemos criar sob medida para seu projeto.</p>
+  </div>
+<a class="btn btn-center" 
+   href="https://wa.me/5533984166709?text=Fala%20Rick!%20Vim%20atraves%20do%20site%20Aura%20Trap%20e%20tenho%20interesse%20nos%20beats.%20Meu%20nome%20artistico%20eh:" 
+   target="_blank"
+   onclick="fbq('track', 'Lead');">
+  Quero meus beats
+</a>
+</section>
+
+<section class="testimonials">
+  <h2>O que os artistas dizem</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial"><p>Beat pesado demais, subiu o nível do meu som total 🔥</p><span>— MC Kalleb</span></div>
+    <div class="testimonial"><p>Qualidade absurda, já voltei pra pegar mais 💯</p><span>— Caio Martins</span></div>
+    <div class="testimonial"><p>Flow encaixou perfeito, recomendo demais 🎤</p><span>— Jovem Thug</span></div>
+    <div class="testimonial"><p>Super recomendo, vibe incrível 🎧</p><span>— Merlin13</span></div>
+    <div class="testimonial"><p>Beat top, me ajudou no meu projeto 💿</p><span>— Mc Novim</span></div>
+    <div class="testimonial"><p>Mix perfeito, vibe profissional 🏆</p><span>— Henrique Batista</span></div>
+  </div>
+</section>
+
+<section class="whoami">
+  <canvas id="whoami-canvas"></canvas>
+  <img src="Img/avatar.png" alt="Rick Borges">
+  <div class="whoami-text">
+    <h3>Rick Borges</h3>
+    <p>Desde 2010, sou rapper, compositor e beatmaker, criando beats que elevam a música de artistas independentes a outro nível. Ao longo dos anos, desenvolvi um estilo próprio, combinando técnica e emoção, sempre pensando em dar oportunidade para que talentos tenham acesso a produções de qualidade profissional. Minha missão é ajudar artistas a transformarem suas ideias em hits, oferecendo beats exclusivos ou licenciados com liberdade criativa, e acompanhando cada passo da jornada musical.<br><br>
+    "A música é mais do que som, é a voz da nossa história — e estou aqui para fazer cada artista brilhar."</p>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Seu próximo hit começa aqui</h2>
+  <p>Fale comigo agora no WhatsApp</p>
+  <a class="btn" 
+   href="https://wa.me/5533984166709?text=Fala%20Rick!%20Vim%20atraves%20do%20site%20Aura%20Trap%20e%20tenho%20interesse%20nos%20beats.%20Meu%20nome%20artistico%20eh:" 
+   target="_blank"
+   onclick="fbq('track', 'Lead');">
+  Comprar Agora
+</a>
+  <div class="cta-bg"></div>
+</section>
+
+<footer>
+  <p>© 2026 - Aura Trap | Todos os direitos reservados</p>
+</footer>
+
+</div>
+
+<script>
+// PLAYER: Pausa os outros audios quando um toca
+const audios = document.querySelectorAll('.track-card audio');
+audios.forEach(audio => {
+    audio.addEventListener('play', () => {
+        audios.forEach(a => {
+            if(a !== audio) a.pause();
+        });
+    });
+});
+
+// PARTICLES BACKGROUND
+const canvas=document.getElementById("bg-canvas");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,d:Math.random()*2})}
+function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle="rgba(255,0,0,0.8)";particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);ctx.fill();p.y+=p.d;if(p.y>canvas.height)p.y=0,p.x=Math.random()*canvas.width;});requestAnimationFrame(draw);}
+draw();
+window.addEventListener("resize",()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
+
+// TIMER
+let tempo=24*60*60;
+const timerEl=document.getElementById("timer");
+setInterval(()=>{
+  let horas=Math.floor(tempo/3600);
+  let minutos=Math.floor((tempo%3600)/60);
+  let segundos=tempo%60;
+  timerEl.textContent=`${horas}h ${minutos}m ${segundos}s`;
+  tempo--;
+  if(tempo<0)tempo=24*60*60;
+},1000);
+
+// WHOAMI PARTICLES INTERATIVOS
+const whoamiCanvas=document.getElementById("whoami-canvas");
+const whoamiCtx=whoamiCanvas.getContext("2d");
+function resizeWho(){whoamiCanvas.width=whoamiCanvas.offsetWidth; whoamiCanvas.height=whoamiCanvas.offsetHeight;}
+resizeWho(); window.addEventListener("resize",resizeWho);
+let whoamiParticles=[];
+for(let i=0;i<60;i++){whoamiParticles.push({x:Math.random()*whoamiCanvas.width,y:Math.random()*whoamiCanvas.height,r:Math.random()*1.5+0.5,d:Math.random()*0.5+0.2})}
+let mouse={x:-100,y:-100};
+whoamiCanvas.addEventListener("mousemove",(e)=>{const rect=whoamiCanvas.getBoundingClientRect(); mouse.x=e.clientX-rect.left; mouse.y=e.clientY-rect.top;});
+function drawWho(){
+  whoamiCtx.clearRect(0,0,whoamiCanvas.width,whoamiCanvas.height);
+  whoamiParticles.forEach(p=>{
+    whoamiCtx.beginPath();
+    let dx=p.x-mouse.x;
+    let dy=p.y-mouse.y;
+    let dist=Math.sqrt(dx*dx+dy*dy);
+    let radius=p.r+(dist<100?(100-dist)/50:0);
+    whoamiCtx.arc(p.x,p.y,radius,0,Math.PI*2,true);
+    whoamiCtx.fillStyle="rgba(255,0,0,0.4)";
+    whoamiCtx.fill();
+    p.y+=p.d;
+    if(p.y>whoamiCanvas.height){p.y=0;p.x=Math.random()*whoamiCanvas.width;}
+  });
+  requestAnimationFrame(drawWho);
+}
+drawWho();
+</script>
+</body>
+</html>
